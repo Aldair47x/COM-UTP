@@ -1,0 +1,12 @@
+
+ip domain-name cisco.com
+crypto key generate rsa 
+
+
+username prueba secret cisco
+line vty 0 4
+transport input ssh 
+login local 
+exit
+ip ssh time-out 15
+exit

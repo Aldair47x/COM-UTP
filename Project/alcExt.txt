@@ -1,0 +1,34 @@
+100
+
+access-list 101 remark Negar acceso de contabilidad al servidor web
+access-list 101 deny ip 192.168.10.0 0.0.0.255 200.200.200.0 0.0.0.255
+
+int fa0/0.10
+Local(config-subif)#ip access-group 100 in 
+
+101
+
+access-list 101 remark Negar acceso de desarrollo al servidor web
+access-list 101 deny ip 192.168.20.0 0.0.0.255 200.200.200.0 0.0.0.255
+
+int fa0/0.20
+Local(config-subif)#ip access-group 101 in 
+
+102
+access-list 102 remark Negar acceso de diseño al servidor web
+access-list 102 deny ip 192.168.30.0 0.0.0.255 200.200.200.0 0.0.0.255
+
+int fa0/0.30
+Local(config-subif)#ip access-group 102 in 
+
+service password-encryption
+no ip domain lookup
+enable secret class
+line con 0
+logging synchronous
+password cisco
+login
+line vty 0 4
+password cisco
+login
+banner motd @Unauthorized Access is Prohibited!@

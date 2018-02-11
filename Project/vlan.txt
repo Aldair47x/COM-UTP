@@ -1,0 +1,82 @@
+vlan 10
+name contabilidad
+vlan 20
+name desarrollo
+vlan 30
+name diseno
+vlan 40
+name admonRed
+
+sede1
+
+int range fa0/1-6
+switchport mode access
+switchport access vlan 10
+
+int range fa0/7-15
+switchport mode access
+switchport access vlan 30
+
+int range fa0/16-23
+switchport mode access
+switchport access vlan 40
+
+interface fa0/24
+switchport mode trunk
+------------------------------------
+
+
+sede3
+
+int range fa0/1-6
+switchport mode access
+switchport access vlan 20
+
+int range fa0/7-15
+switchport mode access
+switchport access vlan 30
+
+int range fa0/16-23
+switchport mode access
+switchport access vlan 40
+
+interface fa0/24
+switchport mode trunk
+
+------------
+sede 2
+
+int range fa0/1-6
+switchport mode access
+switchport access vlan 10
+
+int range fa0/7-15
+switchport mode access
+switchport access vlan 20
+
+int range fa0/16-21
+switchport mode access
+switchport access vlan 40
+
+int range fa0/22-24
+switchport mode trunk
+
+--------
+Local
+
+
+interface fa0/0.10
+encapsulation dot1Q 10
+ip address 192.168.10.1 255.255.255.0
+interface fa0/0.20
+encapsulation dot1Q 20
+ip address 192.168.20.1 255.255.255.0
+interface fa0/0.30
+encapsulation dot1Q 30
+ip address 192.168.30.1 255.255.255.0
+interface fa0/0.40
+encapsulation dot1Q 40
+ip address 192.168.40.1 255.255.255.0
+exit
+interface fa0/0
+no shutdown
